@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --font-jura: Jura;
+  --font-galada: Galada;
+
+  /* font sizes */
+  --font-size-base: 16px;
+  --font-size-6xl: 25px;
+  --font-size-11xl: 30px;
+  --font-size-xl: 20px;
+
+  /* Colors */
+  --color-white: #fff;
+  --color-midnightblue-100: #103592;
+  --color-midnightblue-200: #00278b;
+  --color-lightseagreen: #00baba;
+  --color-palegoldenrod: #fbf3ae;
+  --color-cadetblue: #3299a7;
+  --color-darkslateblue: #2e4e9f;
+  --color-black: #000;
+
+  /* border radiuses */
+  --br-81xl: 100px;
+}

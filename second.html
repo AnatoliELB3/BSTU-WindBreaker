@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Jura:wght@400;500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Galada:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="desktop"  id="second">
+        <div class="header">
+            <div class="headerbg"></div>
+            <a href="index.html"><div class="logo">WindBreaker</div></a>
+            <nav class="menu">
+            
+              <input id="menu-toggle" type="checkbox">
+              <label class="menu-btn" for="menu-toggle">
+                <span></span>
+              </label>
+      
+              <ul class="menu__box">
+                <li><a class="menu__item" href="#">Преимущества</a></li>
+                <li><a class="menu__item" href="#">Магазин</a></li>
+                <li><a class="menu__item" href="#">Видео</a></li>
+                <li><a class="menu__item" href="#">Контакты</a></li>
+              </ul>
+            </nav>
+            <div class="links">
+              <a href="index.html#c">
+              <div class="rectangle-parent5">
+                <div class="group-child6"></div>
+                <div class="div17">Контакты</div>
+              </div>
+            </a>
+             <a href="index.html#a"><div class="div18">Преимущества</div></a> 
+             <a href="#"> <div class="div19">Магазин</div></a>
+             <a href="index.html#v"><div class="div20">Видео</div></a>
+            </div>
+          </div>
+          <div class="bigpic">
+            <img class="sloganbg-icon" alt="" src="./assets/png/sloganbg@2x.png" />
+    
+            <div class="slogan">
+              Велосипеды идеально сочетают в себе эмоциональное общение с природой и
+              волнующий порыв гоночной ДНК
+            </div>
+          </div>
+          <div class="calc">
+            <div class="title">
+                <img class="title-child" alt="" src="./assets/svg/line-3.svg" />
+                <div class="div6">Корзина</div>
+            </div>
+            <form>
+                <label for="products">Выберите товар:</label>
+                <br id="#m">
+                <select id="products">
+                    <option value="">--Выберите товар--</option>
+                    <option value="795 BLADE RS" data-price="100">795 BLADE RS</option>
+                    <option value="785 HUEZ RS" data-price="200">785 HUEZ RS</option>
+                    <option value="765 GRAVEL RS" data-price="300">765 GRAVEL RS</option>
+                </select>
+                <br id="m">
+                <label for="quantity">Количество:</label>
+                <br id="m">
+                <input type="number" id="quantity" min="1" max="10">
+                <button type="button" id="add-to-cart">Добавить в корзину</button>
+            </form>
+            <ul id="cart"></ul>
+            <p id="total"></p>
+            <button class="order" onclick="order()">Заказать</button>
+          </div>
+          <script>
+                // Находим элементы HTML:
+                const productsSelect = document.getElementById('products');
+                const quantityInput = document.getElementById('quantity');
+                const addToCartButton = document.getElementById('add-to-cart');
+                const cartList = document.getElementById('cart');
+                const total = document.getElementById('total');
+
+                // Объявляем объект корзины:
+                const cart = {
+                    items: [],
+
+                    // Метод для добавления товара в корзину:
+                    addItem(item) {
+                        this.items.push(item);
+                    },
+
+                    // Метод для подсчета общей стоимости товаров в корзине:
+                    getTotal() {
+                        return this.items.reduce((total, item) => {
+                            return total + (item.price * item.quantity);
+                        }, 0);
+                    },
+
+                    // Метод для отображения корзины:
+                    render() {
+                        cartList.innerHTML = '';
+                        this.items.forEach(item => {
+                            const li = document.createElement('li');
+                            li.textContent = `${item.quantity} x ${item.product} - ${item.price * item.quantity} руб.`;
+                            cartList.appendChild(li);
+                        });
+
+                        total.textContent = `Общая стоимость: ${this.getTotal()} руб.`;
+                    }
+                };
+
+                // Обработчик события клика на кнопку "Добавить в корзину":
+                addToCartButton.addEventListener('click', () => {
+                    const product = productsSelect.value;
+                    const quantity = quantityInput.value;
+
+                    if (product && quantity) {
+                        const price = parseFloat(productsSelect.options[productsSelect.selectedIndex].getAttribute('data-price'));
+
+                        // Создаем объект товара и добавляем его в корзину:
+                        const item = { product, quantity, price };
+                        cart.addItem(item);
+
+                        // Отображаем корзину:
+                        cart.render();
+
+                        // Очищаем поля выбора товара и ввода количества:
+                        productsSelect.value = '';
+                        quantityInput.value = '';
+                    }
+                });
+                function order(){
+                    alert("Ваш заказ принят!");
+                    location.reload();
+                }
+          </script>
+          <div class="footer">
+            <div class="footer-child"></div>
+            <img
+              class="icons8-facebook-50-1"
+              alt=""
+              src="./assets/png/icons8facebook50-1@2x.png"
+            />
+    
+            <img
+              class="icons8-instagram-50-1"
+              alt=""
+              src="./assets/png/icons8instagram50-1@2x.png"
+            />
+    
+            <img class="icons8-50-1" alt="" src="./assets/png/icons850-1@2x.png" />
+    
+            <div class="github">© 2022 github</div>
+            <div class="div">Левлюх Анатолий Игоревич, ЭЛБ-3</div>
+          </div>
+    </div>
+</body>
+</html>
